@@ -1,10 +1,12 @@
 package br.com.fiap.bean;
 
+import java.util.Calendar;
+
 public class ContaPoupanca extends Conta implements ContaInvestimento {
 
 	private float taxa;
 
-	public static float rendimento;
+	public static float rendimento = 0.4f;
 	
 	public ContaPoupanca() {
 		super();
@@ -12,6 +14,12 @@ public class ContaPoupanca extends Conta implements ContaInvestimento {
 
 	public ContaPoupanca(float taxa) {
 		super();
+		this.taxa = taxa;
+	}
+		
+
+	public ContaPoupanca(int agencia, int numero, Calendar dataAbertura, double saldo, float taxa) {
+		super(agencia, numero, dataAbertura, saldo);
 		this.taxa = taxa;
 	}
 
@@ -27,24 +35,19 @@ public class ContaPoupanca extends Conta implements ContaInvestimento {
 		return rendimento;
 	}
 
+	
+
 	public static void setRendimento(float rendimento) {
 		ContaPoupanca.rendimento = rendimento;
 	}
-
+	
 	@Override
-	public double depositar(double valor) {
-		return saldo + valor;
-	}
-
-	@Override
-	public double retirar(double valor) {
+	public double retirar(double valor)throws Exception {
 		
-		if ((saldo-valor) > 0) {
-			return saldo-valor-taxa;
-		} else {
-			System.out.println("Saldo insuficiente!");
-			return saldo;
-		}
+		if (saldo<valor) {
+			throw new Exception("Saldo Insuficiente");
+		} 
+		return saldo -= valor+ taxa;
 	}
 	
 	@Override

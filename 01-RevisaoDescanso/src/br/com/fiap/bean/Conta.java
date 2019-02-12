@@ -9,9 +9,11 @@ public abstract class Conta {
 	protected Calendar dataAbertura;
 	protected double saldo;
 	
-	public abstract double depositar(double valor);
+	public double depositar(double valor) {
+		return saldo +=valor;
+	};
 	
-	public abstract double retirar(double valor);
+	public abstract double retirar(double valor)throws Exception;
 	
 	public Conta() {
 		super();
