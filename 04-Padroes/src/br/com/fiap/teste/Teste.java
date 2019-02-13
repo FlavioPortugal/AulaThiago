@@ -5,7 +5,7 @@ import br.com.fiap.singleton.ConfiguracaoSingleton;
 public class Teste {
 		
 	public static void main (String[] args) {
-		String idioma = ConfiguracaoSingleton.getInstance().getProperty("idioma")
+		String idioma = ConfiguracaoSingleton.getInstance().getProperty("idioma");
 		System.out.println(idioma);
 	}
 	
